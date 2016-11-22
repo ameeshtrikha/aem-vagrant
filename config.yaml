@@ -1,0 +1,112 @@
+###############################################################################
+# VMs configs
+###############################################################################
+vms:
+  # CQ5 VMs: 6.0 & 6.1 
+  # Each VM has a Author & a Publish instance
+  # Allocate 3Gb to the VM & 1 CPUs
+  # SSH Ports: 2243+
+  # IP: 192.168.2.199-
+  #
+  #######################################################
+  # For Ubuntu update the configs - 
+  # box_os: "ubuntu"
+  # box_name: "opscode_ubuntu-14.04_chef-provisionerless"
+  # box_url: "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box"
+  #######################################################
+  # For Centos - 
+  # box_name: "centos-7.2-x64.box"
+  # box_url: "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.2_chef-provisionerless.box"
+  ###############################################################################################
+  # AEM 6.1 VMS
+  ###############################################################################################
+  aem6.1-author-vm:
+    enabled: false
+    install_dispatcher: false
+    memory_size: 3072
+    cpus: 1
+    box_os: "centos"
+    box_name: "centos-7.2-x64.box"
+    box_url: "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.2_chef-provisionerless.box"
+    gui: false
+    installation_type: "author"
+    sling_run_modes: "author,local"
+    port: 4502
+    min_heap: 512
+    max_heap: 2048
+    jvm_options: "-agentlib:jdwp=transport=dt_socket,address=30302,server=y,suspend=n" # address=<port> should be same as the one in http_cq_debug below
+    license_url: "file:///setup/aem/6.1/license.properties"
+    jar_url: "file:///setup/aem/6.1/AEM_6.1_Quickstart.jar"
+    shared_folders:
+      vm-software:
+        host_path: "/setup/aem/6.1"
+        vm_path: "/setup/aem/6.1"
+    install_packages: []
+    jdk_version: '8'
+    java:
+        x86_64:
+          url: "http://download.oracle.com/otn-pub/java/jdk/8u77-b03/jdk-8u77-linux-x64.tar.gz"
+          checksum: "a47dc0962a57b27a0cc00b9f11a53dc3add40c98633ba49a2419b845e4dedf43"
+        i586:
+          url: "http://download.oracle.com/otn-pub/java/jdk/8u77-b03/jdk-8u77-linux-i586.tar.gz"
+          checksum: "3516bc685a39ca3d05bbec56d6241c8329ebb222d65a944c22ea29b45fe1ec0a"        
+    port_forwards:
+      ssh:
+        host_port:  2243
+        guest_port: 22
+      http:
+        host_port:  8082
+        guest_port: 80
+      http_cq_deploy:
+        host_port:  4502
+        guest_port: 4502
+      http_cq_debug:
+        host_port:  30302
+        guest_port: 30302 
+    ip: 192.168.2.199
+    host_name: "local-aem61.author.ameesh.net"
+  aem6.1-publish-vm:
+    enabled: false
+    install_dispatcher: true
+    memory_size: 3072
+    cpus: 1
+    box_os: "centos"
+    box_name: "centos-7.2-x64.box"
+    box_url: "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.2_chef-provisionerless.box"
+    gui: false
+    installation_type: "publish"
+    sling_run_modes: "publish,local"
+    port: 4503
+    min_heap: 512
+    max_heap: 2048
+    jvm_options: "-agentlib:jdwp=transport=dt_socket,address=30303,server=y,suspend=n" # address=<port> should be same as the one in http_cq_debug below
+    license_url: "file:///setup/aem/6.1/license.properties"
+    jar_url: "file:///setup/aem/6.1/AEM_6.1_Quickstart.jar"
+    shared_folders:
+      vm-software:
+        host_path: "/setup/aem/6.1"
+        vm_path: "/setup/aem/6.1"
+    install_packages: []
+    jdk_version: '8'
+    java:
+        x86_64:
+          url: "http://download.oracle.com/otn-pub/java/jdk/8u77-b03/jdk-8u77-linux-x64.tar.gz"
+          checksum: "a47dc0962a57b27a0cc00b9f11a53dc3add40c98633ba49a2419b845e4dedf43"
+        i586:
+          url: "http://download.oracle.com/otn-pub/java/jdk/8u77-b03/jdk-8u77-linux-i586.tar.gz"
+          checksum: "3516bc685a39ca3d05bbec56d6241c8329ebb222d65a944c22ea29b45fe1ec0a"
+    port_forwards:
+      ssh:
+        host_port:  2244
+        guest_port: 22
+      http:
+        host_port:  5503
+        guest_port: 80
+      http_cq_deploy:
+        host_port:  4503
+        guest_port: 4503
+      http_cq_debug:
+        host_port:  30303
+        guest_port: 30303     
+    ip: 192.168.2.198
+    host_name: "local-aem61.publish.ameesh.net"

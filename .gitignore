@@ -1,0 +1,16 @@
+vlt
+.idea
+*.iml
+*.iws
+.DS_Store
+
+*.dir
+*.tmp
+target/
+.vagrant/
+
+.project
+.settings
+.classpath
+Berksfile.lock
+config_local.yaml
