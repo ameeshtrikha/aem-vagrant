@@ -2,15 +2,16 @@
 
 Please read this file all the way through. Yes, really. There's important stuff in here !
 
-This Vagrantfile and associated files will help you get set up quickly to run an Adobe CQ / AEM instance - AEM 6.1
+This Vagrantfile and associated files will help you get set up quickly to run an Adobe CQ / AEM instance - AEM 6.x
 
 The default Geometrixx packages will not be installed.
 
 ## Pre-Requisite
-* Create folder structure /setup/aem/6.1
-* Copy AEM_6.1_Quickstart.jar [name must match] to the folder __6.1__
-* Copy license.properties [name must match] to the folder __6.1__
+* Create folder structure /setup/aem/6.x
+* Copy AEM_6.x_Quickstart.jar [name must match] to the folder __6.x__
+* Copy license.properties [name must match] to the folder __6.x__
 
+Currently the scripts are configured for 6.3, for any other version make changes accordingly.
 ## Installation
 
 Install Vagrant 1.7.4 or later from the [Vagrant downloads page](http://www.vagrantup.com/downloads.html) and the latest [VirtualBox](https://www.virtualbox.org/)
@@ -38,7 +39,7 @@ Windows: using '>= 2.0.1' will not be a recognized version on windows.  Using '2
 1. Create a new folder to hold the files.
 
 2. Download *all* the files from the folder holding the type of instance you need. You should have `Vagrantfile`, `Berksfile`, `config.yaml` and `config_local_example.yaml`. 
-3. `config.yaml` defines all the configuration parameters for AEM 6.0 [author and publish] and AEM 6.1 [author, publish] instances. 
+3. `config.yaml` defines all the configuration parameters for AEM 6.x [author and publish] instances. 
 4. Create a copy of `config_local_example.yaml` and name it as `config_local.yaml`
 5. Edit the file `config_local.yaml` and set `enable` `true` for the instances you want to use. Please note you can either get AEM 6.0 instance type (author/publish) up or AEM 6.1 instance up, same instances for both can not be used simultaneously as it will cause port conflict in VirtualBox. 
 
