@@ -22,6 +22,8 @@ Install Vagrant 1.7.4 or later from the [Vagrant downloads page](http://www.vagr
 
 This plugin requires the ChefDK, downloadable from here: http://downloads.getchef.com/chef-dk/
 
+#### Update the system path to include the chef binaries. For MAC - '/opt/chefdk/bin'
+
 Windows: using '>= 2.0.1' will not be a recognized version on windows.  Using '2.0.1' will error. '3.0.1' works well. Using '4.0.0' will need the following fix: https://github.com/berkshelf/vagrant-berkshelf/issues/235 
 
     $ vagrant plugin install vagrant-berkshelf --plugin-version '>= 2.0.1'
