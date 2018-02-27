@@ -37,10 +37,10 @@ end
 # Method to confiure port forwards http://static.content.akqa.net/static/content/jre/ 
 def configure_port_forwarding(config, port_forwards)
   port_forwards.each do |name, forward|
-  	if is_local_port_open? forward['host_port']
+    if is_local_port_open? forward['host_port']
         puts "[WARN] Port #{forward['host_port']} is in use."
     end
-  	config.vm.network :forwarded_port, guest: forward['guest_port'], host: forward['host_port']
+    config.vm.network :forwarded_port, guest: forward['guest_port'], host: forward['host_port']
   end
 end
 
@@ -193,27 +193,27 @@ Vagrant.configure(2) do |global_config|
     CONF['vms'].each do |vm_name, vm_conf|
         if vm_conf['enabled']
             global_config.vm.define vm_name do |config|
-            	  # Enable berkshelf support
-  				      config.berkshelf.enabled = true
+                # Enable berkshelf support
+                config.berkshelf.enabled = true
 
-  				      # Use Omnibus to install the latest Chef
-  				      config.omnibus.chef_version = :latest
+                # Use Omnibus to install the latest Chef
+                config.omnibus.chef_version = :latest
 
                 # Configure the Box Name and URL (if exists)
                 configure_box(config, vm_conf['box_name'], vm_conf['box_url'], vm_name)
 
                 # Boot with a GUI so you can see the screen. (Default is headless)
                 config.vm.boot_mode = :gui if vm_conf['gui']
-				
-				        # Configure Port Forwarding
-				        configure_port_forwarding(config, vm_conf['port_forwards'])
+        
+                # Configure Port Forwarding
+                configure_port_forwarding(config, vm_conf['port_forwards'])
 
                 # Configure Shared Folders
                 configure_shared_folders(config, vm_conf['shared_folders'])
-               	
+                
                 # VirtualBox Specific Configuration
                 configure_provider(config, vm_name, vm_conf['cpus'], vm_conf['memory_size'], vm_conf['box_os'])
-   				      
+                
                 # Setup Private Network IP & Bridge
                 configure_private_network_ip(config, vm_conf['ip'], vm_name)
 

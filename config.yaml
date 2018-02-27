@@ -18,9 +18,9 @@ vms:
   # box_name: "centos-7.2-x64.box"
   # box_url: "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.2_chef-provisionerless.box"
   ###############################################################################################
-  # AEM 6.1 VMS
+  # AEM 6.3 VMS
   ###############################################################################################
-  aem6.1-author-vm:
+  aem6.3-author-vm:
     enabled: false
     install_dispatcher: false
     memory_size: 3072
@@ -35,21 +35,21 @@ vms:
     min_heap: 512
     max_heap: 2048
     jvm_options: "-agentlib:jdwp=transport=dt_socket,address=30302,server=y,suspend=n" # address=<port> should be same as the one in http_cq_debug below
-    license_url: "file:///setup/aem/6.1/license.properties"
-    jar_url: "file:///setup/aem/6.1/AEM_6.1_Quickstart.jar"
+    license_url: "file:///vagrant/setup/aem/6.3/license.properties"
+    jar_url: "file:///vagrant/setup/aem/6.3/AEM_6.3_Quickstart.jar"
     shared_folders:
       vm-software:
-        host_path: "/setup/aem/6.1"
-        vm_path: "/setup/aem/6.1"
-    install_packages: []
+        host_path: "setup"
+        vm_path: "/setup"
+    install_packages: ["file:///vagrant/setup/aem/6.3/AEM-6.3-Service-Pack-1-6.3.1.zip"]
     jdk_version: '8'
     java:
         x86_64:
-          url: "http://download.oracle.com/otn-pub/java/jdk/8u77-b03/jdk-8u77-linux-x64.tar.gz"
-          checksum: "a47dc0962a57b27a0cc00b9f11a53dc3add40c98633ba49a2419b845e4dedf43"
+          url: "http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz"
+          checksum: "6dbc56a0e3310b69e91bb64db63a485bd7b6a8083f08e48047276380a0e2021e"
         i586:
-          url: "http://download.oracle.com/otn-pub/java/jdk/8u77-b03/jdk-8u77-linux-i586.tar.gz"
-          checksum: "3516bc685a39ca3d05bbec56d6241c8329ebb222d65a944c22ea29b45fe1ec0a"        
+          url: "http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-i586.tar.gz"
+          checksum: "cf69617a74cccb262f06f7948f38e1c004d2663801e7724e7a7a0dabeb48d7dc"        
     port_forwards:
       ssh:
         host_port:  2243
@@ -64,8 +64,8 @@ vms:
         host_port:  30302
         guest_port: 30302 
     ip: 192.168.2.199
-    host_name: "local-aem61.author.ameesh.net"
-  aem6.1-publish-vm:
+    host_name: "aem63.author.local.net"
+  aem6.3-publish-vm:
     enabled: false
     install_dispatcher: true
     memory_size: 3072
@@ -80,33 +80,33 @@ vms:
     min_heap: 512
     max_heap: 2048
     jvm_options: "-agentlib:jdwp=transport=dt_socket,address=30303,server=y,suspend=n" # address=<port> should be same as the one in http_cq_debug below
-    license_url: "file:///setup/aem/6.1/license.properties"
-    jar_url: "file:///setup/aem/6.1/AEM_6.1_Quickstart.jar"
+    license_url: "file:///setup/aem/6.3/license.properties"
+    jar_url: "file:///setup/aem/6.3/AEM_6.3_Quickstart.jar"
     shared_folders:
       vm-software:
-        host_path: "/setup/aem/6.1"
-        vm_path: "/setup/aem/6.1"
-    install_packages: []
+        host_path: "setup"
+        vm_path: "/setup"
+    install_packages: ["file:///vagrant/setup/aem/6.3/AEM-6.3-Service-Pack-1-6.3.1.zip"]
     jdk_version: '8'
     java:
         x86_64:
-          url: "http://download.oracle.com/otn-pub/java/jdk/8u77-b03/jdk-8u77-linux-x64.tar.gz"
-          checksum: "a47dc0962a57b27a0cc00b9f11a53dc3add40c98633ba49a2419b845e4dedf43"
+          url: "http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz"
+          checksum: "6dbc56a0e3310b69e91bb64db63a485bd7b6a8083f08e48047276380a0e2021e"
         i586:
-          url: "http://download.oracle.com/otn-pub/java/jdk/8u77-b03/jdk-8u77-linux-i586.tar.gz"
-          checksum: "3516bc685a39ca3d05bbec56d6241c8329ebb222d65a944c22ea29b45fe1ec0a"
+          url: "http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-i586.tar.gz"
+          checksum: "cf69617a74cccb262f06f7948f38e1c004d2663801e7724e7a7a0dabeb48d7dc"
     port_forwards:
       ssh:
         host_port:  2244
         guest_port: 22
       http:
-        host_port:  5503
+        host_port:  8001
         guest_port: 80
       http_cq_deploy:
         host_port:  4503
         guest_port: 4503
       http_cq_debug:
         host_port:  30303
-        guest_port: 30303     
+        guest_port: 30303
     ip: 192.168.2.198
-    host_name: "local-aem61.publish.ameesh.net"
+    host_name: "aem63.publish.local.net"

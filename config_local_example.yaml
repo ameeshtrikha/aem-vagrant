@@ -2,7 +2,7 @@
 # VMs configs
 ###############################################################################
 vms:
-  aem6.1-author-vm:
-    enabled: true
-  aem6.1-publish-vm:
+  aem6.3-author-vm:
     enabled: false
+  aem6.3-publish-vm:
+    enabled: true
