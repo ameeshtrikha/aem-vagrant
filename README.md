@@ -1,4 +1,6 @@
-# Vagrant for AEM
+# DEPRECATED 
+The scripts are incompatible with the current version of Chef and thus has been deprecated. Moving towards more Ansible setup instead of Chef.
+## Vagrant for AEM
 
 Please read this file all the way through. Yes, really. There's important stuff in here !
 
